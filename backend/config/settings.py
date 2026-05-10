@@ -88,29 +88,16 @@ ASGI_APPLICATION = "config.asgi.application"
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-# Use SQLite for development until PostgreSQL is configured (TASK-003)
-# This will be switched to PostgreSQL in the next task
-USE_POSTGRES = os.getenv('USE_POSTGRES', 'False') == 'True'
-
-if USE_POSTGRES:
-    DATABASES = {
-        "default": {
-            "ENGINE": "django.db.backends.postgresql",
-            "NAME": os.getenv('DB_NAME', 'cold_room_dev'),
-            "USER": os.getenv('DB_USER', 'postgres'),
-            "PASSWORD": os.getenv('DB_PASSWORD', ''),
-            "HOST": os.getenv('DB_HOST', 'localhost'),
-            "PORT": os.getenv('DB_PORT', '5432'),
-        }
+DATABASES = {
+    "default": {
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": os.getenv('DB_NAME', 'cold_room_dev'),
+        "USER": os.getenv('DB_USER', 'postgres'),
+        "PASSWORD": os.getenv('DB_PASSWORD', ''),
+        "HOST": os.getenv('DB_HOST', 'localhost'),
+        "PORT": os.getenv('DB_PORT', '5432'),
     }
-else:
-    # Temporary SQLite configuration for testing
-    DATABASES = {
-        "default": {
-            "ENGINE": "django.db.backends.sqlite3",
-            "NAME": BASE_DIR / "db.sqlite3",
-        }
-    }
+}
 
 
 # Password validation
