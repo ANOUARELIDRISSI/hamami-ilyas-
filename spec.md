@@ -31,7 +31,7 @@ iot-cold-room-monitoring/
 | Phase | Task ID | Titre | Responsable | Branche | Statut |
 |-------|---------|-------|-------------|---------|--------|
 | 0 | TASK-001 | Initialisation Repo | @dev1 | feature/TASK-001-init-repo | ✅ DONE |
-| 0 | TASK-002 | Structure Django de base | @dev2 | feature/TASK-002-django-scaffold | ⬜ TODO |
+| 0 | TASK-002 | Structure Django de base | @dev2 | feature/TASK-002-django-scaffold | ✅ DONE |
 | 0 | TASK-003 | Configuration PostgreSQL locale | @dev3 | feature/TASK-003-postgres-config | ⬜ TODO |
 | 1 | TASK-101 | Schéma SQL complet | @db-dev | feature/TASK-101-sql-schema | ⬜ TODO |
 | 1 | TASK-102 | Scripts de migration SQL | @db-dev | feature/TASK-102-sql-migrations | ⬜ TODO |
@@ -102,15 +102,15 @@ iot-cold-room-monitoring/
 **Objectif**: Initialiser le projet Django avec les applications de base et les dépendances nécessaires.
 
 **Critères d'acceptation**:
-- [ ] Environnement virtuel Python créé dans `backend/`
-- [ ] Dépendances installées: django, djangorestframework, django-cors-headers, channels, psycopg2-binary, python-dotenv
-- [ ] Fichier `requirements.txt` généré
-- [ ] Projet Django initialisé (nom: `config`)
-- [ ] Applications créées: `core`, `api`, `alerts`
-- [ ] Fichier `.env.example` créé avec variables nécessaires
-- [ ] URLs de base configurées
-- [ ] Endpoint `/health` fonctionnel retournant `{"status": "ok"}`
-- [ ] Script `scripts/run_backend.sh` créé
+- [x] Environnement virtuel Python créé dans `backend/`
+- [x] Dépendances installées: django, djangorestframework, django-cors-headers, channels, psycopg2-binary, python-dotenv
+- [x] Fichier `requirements.txt` généré
+- [x] Projet Django initialisé (nom: `config`)
+- [x] Applications créées: `core`, `api`, `alerts`
+- [x] Fichier `.env.example` créé avec variables nécessaires
+- [x] URLs de base configurées
+- [x] Endpoint `/health` fonctionnel retournant `{"status": "ok"}`
+- [x] Script `scripts/run_backend.sh` créé
 
 **Détails techniques**:
 - Configuration ASGI pour WebSockets
