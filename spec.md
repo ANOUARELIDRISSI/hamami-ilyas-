@@ -30,7 +30,7 @@ iot-cold-room-monitoring/
 
 | Phase | Task ID | Titre | Responsable | Branche | Statut |
 |-------|---------|-------|-------------|---------|--------|
-| 0 | TASK-001 | Initialisation Repo | @dev1 | feature/TASK-001-init-repo | ⬜ TODO |
+| 0 | TASK-001 | Initialisation Repo | @dev1 | feature/TASK-001-init-repo | ✅ DONE |
 | 0 | TASK-002 | Structure Django de base | @dev2 | feature/TASK-002-django-scaffold | ⬜ TODO |
 | 0 | TASK-003 | Configuration PostgreSQL locale | @dev3 | feature/TASK-003-postgres-config | ⬜ TODO |
 | 1 | TASK-101 | Schéma SQL complet | @db-dev | feature/TASK-101-sql-schema | ⬜ TODO |
@@ -82,11 +82,11 @@ iot-cold-room-monitoring/
 **Objectif**: Mettre en place le repository distant et l'arborescence de base du projet.
 
 **Critères d'acceptation**:
-- [ ] Repository distant créé et cloné
-- [ ] Structure de dossiers complète créée
-- [ ] Fichier .gitignore configuré pour Python/Django
-- [ ] README.md initial avec titre, description et stack technique
-- [ ] Commit initial poussé sur la branche main
+- [x] Repository distant créé et cloné
+- [x] Structure de dossiers complète créée
+- [x] Fichier .gitignore configuré pour Python/Django
+- [x] README.md initial avec titre, description et stack technique
+- [x] Commit initial poussé sur la branche main
 
 **Détails techniques**:
 - Créer les dossiers: `backend/`, `frontend/`, `database/schemas/`, `database/migrations/`, `simulator/`, `scripts/`, `docs/`
