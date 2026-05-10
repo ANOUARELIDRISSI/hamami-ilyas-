@@ -32,7 +32,7 @@ iot-cold-room-monitoring/
 |-------|---------|-------|-------------|---------|--------|
 | 0 | TASK-001 | Initialisation Repo | @dev1 | feature/TASK-001-init-repo | ✅ DONE |
 | 0 | TASK-002 | Structure Django de base | @dev2 | feature/TASK-002-django-scaffold | ✅ DONE |
-| 0 | TASK-003 | Configuration PostgreSQL locale | @dev3 | feature/TASK-003-postgres-config | ⬜ TODO |
+| 0 | TASK-003 | Configuration PostgreSQL locale | @dev3 | feature/TASK-003-postgres-config | ✅ DONE |
 | 1 | TASK-101 | Schéma SQL complet | @db-dev | feature/TASK-101-sql-schema | ⬜ TODO |
 | 1 | TASK-102 | Scripts de migration SQL | @db-dev | feature/TASK-102-sql-migrations | ⬜ TODO |
 | 2 | TASK-201 | Modèles Django ORM | @backend1 | feature/TASK-201-django-models | ⬜ TODO |
@@ -127,13 +127,13 @@ iot-cold-room-monitoring/
 **Objectif**: Installer PostgreSQL, créer la base de données et connecter Django.
 
 **Critères d'acceptation**:
-- [ ] PostgreSQL 14+ installé localement
-- [ ] Utilisateur et base de données `cold_room_dev` créés
-- [ ] Django configuré pour utiliser PostgreSQL via `.env`
-- [ ] Fichier `.env` créé à partir de `.env.example`
-- [ ] Migrations par défaut de Django exécutées avec succès
-- [ ] Script `scripts/init_db.sh` créé
-- [ ] Documentation dans `database/README.md`
+- [x] PostgreSQL 14+ installé localement
+- [x] Utilisateur et base de données `cold_room_dev` créés
+- [x] Django configuré pour utiliser PostgreSQL via `.env`
+- [x] Fichier `.env` créé à partir de `.env.example`
+- [x] Migrations par défaut de Django exécutées avec succès
+- [x] Script `scripts/init_db.sh` créé
+- [x] Documentation dans `database/README.md`
 
 **Détails techniques**:
 - Variables d'environnement: `DB_NAME`, `DB_USER`, `DB_PASSWORD`, `DB_HOST`, `DB_PORT`
