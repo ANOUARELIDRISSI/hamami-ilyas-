@@ -1,0 +1,717 @@
+# 📋 Cold Room Monitoring System - Project Management
+
+## 👥 Team
+- **Developer 1**: Backend & Database
+- **Developer 2**: Backend & API
+- **Developer 3**: Frontend
+- **Developer 4**: Integration & Testing
+
+---
+
+## 🎯 Project Goal
+Build a **Cold Room Monitoring System** that works on **localhost** with real-time temperature tracking, alerts, and a beautiful responsive web interface.
+
+---
+
+## 🛠️ Tech Stack
+
+### Backend
+- **Language**: Java 17+
+- **Framework**: Spring Boot 3.x
+- **API**: REST API (JSON)
+- **Build Tool**: Maven
+
+### Database
+- **Database**: MySQL 8.0+
+- **Access**: JDBC / JPA (Hibernate)
+
+### Frontend
+- **HTML5** - Structure
+- **CSS3** - Styling (Flexbox/Grid for responsive design)
+- **JavaScript (Vanilla)** - Interactivity
+- **Chart.js** - Real-time graphs
+- **Responsive Design** - Works on mobile, tablet, desktop
+
+### Tools
+- **Git/GitHub** - Version control
+- **Postman** - API testing
+- **VS Code / IntelliJ IDEA** - Code editors
+
+---
+
+## 📊 Task Board
+
+| ID | Task | Assigned To | Branch | Status |
+|----|------|-------------|--------|--------|
+| T001 | Project Setup | Dev1 | setup | ✅ DONE |
+| T002 | Database Schema | Dev1 | db-schema | ⬜ TODO |
+| T003 | Spring Boot Setup | Dev2 | spring-init | ⬜ TODO |
+| T004 | Sensor API | Dev2 | sensor-api | ⬜ TODO |
+| T005 | Readings API | Dev2 | readings-api | ⬜ TODO |
+| T006 | Alerts API | Dev2 | alerts-api | ⬜ TODO |
+| T007 | Frontend Structure | Dev3 | frontend-base | ⬜ TODO |
+| T008 | Dashboard Page | Dev3 | dashboard | ⬜ TODO |
+| T009 | Alerts Page | Dev3 | alerts-page | ⬜ TODO |
+| T010 | Settings Page | Dev3 | settings-page | ⬜ TODO |
+| T011 | API Integration | Dev4 | api-connect | ⬜ TODO |
+| T012 | Simulator Script | Dev4 | simulator | ⬜ TODO |
+| T013 | Testing & Fixes | All | testing | ⬜ TODO |
+
+**Status Legend:**
+- ⬜ TODO - Not started
+- 🔄 IN PROGRESS - Currently working on it
+- ✅ DONE - Completed and merged
+- ❌ BLOCKED - Waiting for something
+
+---
+
+## 📝 Detailed Tasks
+
+### Phase 1: Foundation
+
+#### T001: Project Setup ✅
+**Assigned**: Dev1  
+**Branch**: `setup`  
+**Status**: ✅ DONE
+
+**What to do:**
+- [x] Create GitHub repository
+- [x] Create folder structure
+- [x] Add .gitignore file
+- [x] Create README.md
+- [x] Push initial commit
+
+**Folder Structure:**
+```
+cold-room-monitoring/
+├── backend/          # Java Spring Boot project
+├── frontend/         # HTML/CSS/JS files
+├── database/         # SQL scripts
+├── simulator/        # Python sensor simulator
+└── docs/            # Documentation
+```
+
+---
+
+#### T002: Database Schema
+**Assigned**: Dev1  
+**Branch**: `db-schema`  
+**Status**: ⬜ TODO
+
+**What to do:**
+- [ ] Install MySQL locally
+- [ ] Create database `cold_room_db`
+- [ ] Create SQL script for tables
+- [ ] Add sample data (4 sensors)
+- [ ] Test database connection
+
+**Tables to create:**
+
+**1. sensors**
+```sql
+- id (INT, PRIMARY KEY, AUTO_INCREMENT)
+- name (VARCHAR) - e.g., "Temperature Sensor"
+- sensor_type (VARCHAR) - temperature, humidity, door, pressure
+- unit (VARCHAR) - °C, %, boolean, hPa
+- location (VARCHAR) - e.g., "Main Chamber"
+- min_threshold (DECIMAL) - minimum safe value
+- max_threshold (DECIMAL) - maximum safe value
+- is_active (BOOLEAN) - sensor enabled/disabled
+- created_at (TIMESTAMP)
+- updated_at (TIMESTAMP)
+```
+
+**2. sensor_readings**
+```sql
+- id (BIGINT, PRIMARY KEY, AUTO_INCREMENT)
+- sensor_id (INT, FOREIGN KEY → sensors.id)
+- value (DECIMAL) - the reading value
+- timestamp (TIMESTAMP) - when reading was taken
+```
+
+**3. alerts**
+```sql
+- id (BIGINT, PRIMARY KEY, AUTO_INCREMENT)
+- sensor_id (INT, FOREIGN KEY → sensors.id)
+- reading_id (BIGINT, FOREIGN KEY → sensor_readings.id)
+- alert_type (VARCHAR) - threshold_exceeded, sensor_offline
+- severity (VARCHAR) - info, warning, critical
+- message (TEXT) - alert description
+- is_resolved (BOOLEAN) - alert status
+- created_at (TIMESTAMP)
+- resolved_at (TIMESTAMP)
+```
+
+**Sample Sensors:**
+1. Temperature: -25°C to -15°C
+2. Humidity: 40% to 60%
+3. Door: 0 (closed) or 1 (open)
+4. Pressure: 1000 to 1020 hPa
+
+**Files to create:**
+- `database/schema.sql` - table creation
+- `database/seed_data.sql` - sample sensors
+- `database/README.md` - setup instructions
+
+---
+
+#### T003: Spring Boot Setup
+**Assigned**: Dev2  
+**Branch**: `spring-init`  
+**Status**: ⬜ TODO
+
+**What to do:**
+- [ ] Create Spring Boot project (Spring Initializr)
+- [ ] Add dependencies (Web, JPA, MySQL, Lombok)
+- [ ] Configure application.properties
+- [ ] Create entity classes (Sensor, SensorReading, Alert)
+- [ ] Test database connection
+- [ ] Create health check endpoint
+
+**Dependencies needed:**
+- Spring Web
+- Spring Data JPA
+- MySQL Driver
+- Lombok
+- Validation
+
+**application.properties:**
+```properties
+spring.datasource.url=jdbc:mysql://localhost:3306/cold_room_db
+spring.datasource.username=root
+spring.datasource.password=yourpassword
+spring.jpa.hibernate.ddl-auto=update
+spring.jpa.show-sql=true
+server.port=8080
+```
+
+**Health Check:**
+- Endpoint: `GET /health`
+- Response: `{"status": "ok"}`
+
+**Files to create:**
+- `backend/src/main/java/.../entity/Sensor.java`
+- `backend/src/main/java/.../entity/SensorReading.java`
+- `backend/src/main/java/.../entity/Alert.java`
+- `backend/src/main/resources/application.properties`
+
+---
+
+### Phase 2: Backend API
+
+#### T004: Sensor API
+**Assigned**: Dev2  
+**Branch**: `sensor-api`  
+**Status**: ⬜ TODO
+
+**What to do:**
+- [ ] Create SensorRepository
+- [ ] Create SensorService
+- [ ] Create SensorController
+- [ ] Implement CRUD operations
+- [ ] Test with Postman
+
+**Endpoints:**
+- `GET /api/sensors` - Get all sensors
+- `GET /api/sensors/{id}` - Get sensor by ID
+- `POST /api/sensors` - Create new sensor
+- `PUT /api/sensors/{id}` - Update sensor
+- `DELETE /api/sensors/{id}` - Delete sensor
+- `GET /api/sensors/active` - Get only active sensors
+
+**Example Response:**
+```json
+{
+  "id": 1,
+  "name": "Temperature Sensor",
+  "sensorType": "temperature",
+  "unit": "°C",
+  "location": "Main Chamber",
+  "minThreshold": -25.0,
+  "maxThreshold": -15.0,
+  "isActive": true,
+  "createdAt": "2026-05-11T10:00:00",
+  "updatedAt": "2026-05-11T10:00:00"
+}
+```
+
+---
+
+#### T005: Readings API
+**Assigned**: Dev2  
+**Branch**: `readings-api`  
+**Status**: ⬜ TODO
+
+**What to do:**
+- [ ] Create SensorReadingRepository
+- [ ] Create SensorReadingService
+- [ ] Create SensorReadingController
+- [ ] Implement anomaly detection logic
+- [ ] Test with Postman
+
+**Endpoints:**
+- `POST /api/readings` - Add new reading (from simulator)
+- `GET /api/readings` - Get all readings (with pagination)
+- `GET /api/readings/sensor/{sensorId}` - Get readings for specific sensor
+- `GET /api/readings/latest` - Get latest reading for each sensor
+- `GET /api/readings/history?sensorId=1&startDate=...&endDate=...` - Get history
+
+**Anomaly Detection:**
+When a reading is saved:
+1. Check if value is outside min/max thresholds
+2. If yes, automatically create an Alert
+3. Set severity based on how far outside threshold
+
+**Example Request:**
+```json
+POST /api/readings
+{
+  "sensorId": 1,
+  "value": -18.5,
+  "timestamp": "2026-05-11T10:30:00"
+}
+```
+
+---
+
+#### T006: Alerts API
+**Assigned**: Dev2  
+**Branch**: `alerts-api`  
+**Status**: ⬜ TODO
+
+**What to do:**
+- [ ] Create AlertRepository
+- [ ] Create AlertService
+- [ ] Create AlertController
+- [ ] Implement resolve alert functionality
+- [ ] Test with Postman
+
+**Endpoints:**
+- `GET /api/alerts` - Get all alerts
+- `GET /api/alerts/active` - Get unresolved alerts only
+- `GET /api/alerts/{id}` - Get alert by ID
+- `PUT /api/alerts/{id}/resolve` - Mark alert as resolved
+- `GET /api/alerts/sensor/{sensorId}` - Get alerts for specific sensor
+
+**Example Response:**
+```json
+{
+  "id": 1,
+  "sensorId": 1,
+  "sensorName": "Temperature Sensor",
+  "readingId": 123,
+  "alertType": "threshold_exceeded",
+  "severity": "critical",
+  "message": "Temperature exceeded maximum threshold: -10.5°C (max: -15.0°C)",
+  "isResolved": false,
+  "createdAt": "2026-05-11T10:35:00",
+  "resolvedAt": null
+}
+```
+
+---
+
+### Phase 3: Frontend
+
+#### T007: Frontend Structure
+**Assigned**: Dev3  
+**Branch**: `frontend-base`  
+**Status**: ⬜ TODO
+
+**What to do:**
+- [ ] Create HTML files (index.html, alerts.html, settings.html)
+- [ ] Create CSS files (global styles, variables)
+- [ ] Create JS files (api.js, utils.js)
+- [ ] Add navigation bar
+- [ ] Make it responsive
+
+**Files to create:**
+```
+frontend/
+├── index.html          # Dashboard page
+├── alerts.html         # Alerts management page
+├── settings.html       # Settings page
+├── css/
+│   ├── style.css       # Global styles
+│   └── responsive.css  # Media queries
+├── js/
+│   ├── api.js          # API calls
+│   ├── dashboard.js    # Dashboard logic
+│   ├── alerts.js       # Alerts page logic
+│   └── settings.js     # Settings page logic
+└── assets/
+    └── images/         # Icons, logos
+```
+
+**Design Requirements:**
+- **Color Scheme**: Cool colors (blues, grays) to match "cold room" theme
+- **Responsive**: Must work on:
+  - Mobile (320px - 480px)
+  - Tablet (481px - 768px)
+  - Desktop (769px+)
+- **Navigation**: Fixed top navbar with links to all pages
+- **Font**: Clean, modern font (e.g., Inter, Roboto)
+
+**CSS Variables to define:**
+```css
+:root {
+  --primary-color: #2563eb;
+  --danger-color: #dc2626;
+  --warning-color: #f59e0b;
+  --success-color: #10b981;
+  --bg-color: #f8fafc;
+  --card-bg: #ffffff;
+  --text-primary: #1e293b;
+  --text-secondary: #64748b;
+  --border-radius: 8px;
+  --shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+```
+
+---
+
+#### T008: Dashboard Page
+**Assigned**: Dev3  
+**Branch**: `dashboard`  
+**Status**: ⬜ TODO
+
+**What to do:**
+- [ ] Create sensor cards layout (grid)
+- [ ] Display current sensor values
+- [ ] Add color indicators (green=ok, red=alert)
+- [ ] Create charts section
+- [ ] Integrate Chart.js for graphs
+- [ ] Add time range selector (1h, 24h, 7d)
+- [ ] Make it auto-refresh every 10 seconds
+
+**Dashboard Layout:**
+
+```
+┌─────────────────────────────────────────┐
+│         🏠 Cold Room Monitor            │
+│  [Dashboard] [Alerts] [Settings]        │
+├─────────────────────────────────────────┤
+│                                         │
+│  ┌──────┐ ┌──────┐ ┌──────┐ ┌──────┐  │
+│  │ 🌡️   │ │ 💧   │ │ 🚪   │ │ 📊   │  │
+│  │-18°C │ │ 52%  │ │Closed│ │1013  │  │
+│  │ OK   │ │ OK   │ │ OK   │ │ OK   │  │
+│  └──────┘ └──────┘ └──────┘ └──────┘  │
+│                                         │
+│  ┌─────────────────────────────────┐   │
+│  │  Temperature History            │   │
+│  │  [1h] [24h] [7d]               │   │
+│  │                                 │   │
+│  │  📈 Line Chart Here             │   │
+│  │                                 │   │
+│  └─────────────────────────────────┘   │
+│                                         │
+│  ┌─────────────────────────────────┐   │
+│  │  Humidity History               │   │
+│  │  📈 Line Chart Here             │   │
+│  └─────────────────────────────────┘   │
+└─────────────────────────────────────────┘
+```
+
+**Sensor Card Features:**
+- Large value display
+- Unit label
+- Status indicator (colored dot or background)
+- Sensor name
+- Last updated time
+- Icon for sensor type
+
+**Chart Features:**
+- Line charts for temperature, humidity, pressure
+- X-axis: Time
+- Y-axis: Value
+- Show threshold lines (min/max)
+- Responsive (stack on mobile)
+- Smooth animations
+
+---
+
+#### T009: Alerts Page
+**Assigned**: Dev3  
+**Branch**: `alerts-page`  
+**Status**: ⬜ TODO
+
+**What to do:**
+- [ ] Create alerts table/list
+- [ ] Add filter buttons (All, Active, Resolved)
+- [ ] Add severity filter (Critical, Warning, Info)
+- [ ] Add "Resolve" button for each alert
+- [ ] Color-code by severity
+- [ ] Make it responsive (cards on mobile)
+
+**Alerts Page Layout:**
+
+```
+┌─────────────────────────────────────────┐
+│  🚨 Alerts Management                   │
+│  [Dashboard] [Alerts] [Settings]        │
+├─────────────────────────────────────────┤
+│                                         │
+│  Filters:                               │
+│  [All] [Active] [Resolved]              │
+│  [Critical] [Warning] [Info]            │
+│                                         │
+│  ┌─────────────────────────────────┐   │
+│  │ 🔴 CRITICAL                     │   │
+│  │ Temperature exceeded threshold  │   │
+│  │ Sensor: Temperature Sensor      │   │
+│  │ Value: -10.5°C (max: -15°C)    │   │
+│  │ Time: 2 minutes ago             │   │
+│  │              [Resolve] [Details]│   │
+│  └─────────────────────────────────┘   │
+│                                         │
+│  ┌─────────────────────────────────┐   │
+│  │ 🟡 WARNING                      │   │
+│  │ Humidity slightly high          │   │
+│  │ Sensor: Humidity Sensor         │   │
+│  │ Value: 62% (max: 60%)          │   │
+│  │ Time: 15 minutes ago            │   │
+│  │              [Resolve] [Details]│   │
+│  └─────────────────────────────────┘   │
+└─────────────────────────────────────────┘
+```
+
+**Alert Card Features:**
+- Severity icon and color
+- Alert message
+- Sensor name
+- Current value vs threshold
+- Timestamp (relative: "5 minutes ago")
+- Resolve button (only for active alerts)
+- Smooth fade-out when resolved
+
+**Color Coding:**
+- 🔴 Critical: Red background/border
+- 🟡 Warning: Yellow/orange background/border
+- 🔵 Info: Blue background/border
+- ✅ Resolved: Gray/muted
+
+---
+
+#### T010: Settings Page
+**Assigned**: Dev3  
+**Branch**: `settings-page`  
+**Status**: ⬜ TODO
+
+**What to do:**
+- [ ] Create form for each sensor
+- [ ] Load current threshold values
+- [ ] Allow editing min/max thresholds
+- [ ] Add save button
+- [ ] Show success/error messages
+- [ ] Add enable/disable toggle for sensors
+
+**Settings Page Layout:**
+
+```
+┌─────────────────────────────────────────┐
+│  ⚙️ Settings                            │
+│  [Dashboard] [Alerts] [Settings]        │
+├─────────────────────────────────────────┤
+│                                         │
+│  Sensor Configuration                   │
+│                                         │
+│  ┌─────────────────────────────────┐   │
+│  │ 🌡️ Temperature Sensor           │   │
+│  │ Location: Main Chamber          │   │
+│  │                                 │   │
+│  │ Min Threshold: [-25] °C         │   │
+│  │ Max Threshold: [-15] °C         │   │
+│  │                                 │   │
+│  │ Status: [●] Active              │   │
+│  │                                 │   │
+│  │              [Save Changes]     │   │
+│  └─────────────────────────────────┘   │
+│                                         │
+│  ┌─────────────────────────────────┐   │
+│  │ 💧 Humidity Sensor              │   │
+│  │ Location: Main Chamber          │   │
+│  │                                 │   │
+│  │ Min Threshold: [40] %           │   │
+│  │ Max Threshold: [60] %           │   │
+│  │                                 │   │
+│  │ Status: [●] Active              │   │
+│  │                                 │   │
+│  │              [Save Changes]     │   │
+│  └─────────────────────────────────┘   │
+└─────────────────────────────────────────┘
+```
+
+**Form Features:**
+- Input fields for min/max thresholds
+- Toggle switch for active/inactive
+- Validation (min < max)
+- Save button per sensor
+- Success message: "Settings saved successfully!"
+- Error message: "Failed to save. Please try again."
+
+---
+
+### Phase 4: Integration
+
+#### T011: API Integration
+**Assigned**: Dev4  
+**Branch**: `api-connect`  
+**Status**: ⬜ TODO
+
+**What to do:**
+- [ ] Create api.js with all API functions
+- [ ] Connect dashboard to backend
+- [ ] Connect alerts page to backend
+- [ ] Connect settings page to backend
+- [ ] Handle errors gracefully
+- [ ] Add loading indicators
+
+**api.js Functions:**
+```javascript
+// Sensors
+async function getAllSensors()
+async function getActiveSensors()
+async function updateSensor(id, data)
+
+// Readings
+async function getLatestReadings()
+async function getReadingHistory(sensorId, startDate, endDate)
+
+// Alerts
+async function getAllAlerts()
+async function getActiveAlerts()
+async function resolveAlert(id)
+```
+
+**Error Handling:**
+- Show user-friendly error messages
+- Log errors to console
+- Retry failed requests (optional)
+
+---
+
+#### T012: Simulator Script
+**Assigned**: Dev4  
+**Branch**: `simulator`  
+**Status**: ⬜ TODO
+
+**What to do:**
+- [ ] Create Python script to simulate sensors
+- [ ] Generate realistic data
+- [ ] Send data to backend API every 10 seconds
+- [ ] Include occasional anomalies (5% of time)
+- [ ] Add README with instructions
+
+**Simulator Features:**
+- Temperature: -18°C ± 2°C (normal), occasionally -10°C (anomaly)
+- Humidity: 50% ± 5% (normal), occasionally 70% (anomaly)
+- Pressure: 1013 hPa ± 5 hPa
+- Door: 95% closed, 5% open
+
+**Files to create:**
+- `simulator/sensor_simulator.py`
+- `simulator/requirements.txt` (requests library)
+- `simulator/README.md`
+
+---
+
+#### T013: Testing & Fixes
+**Assigned**: All  
+**Branch**: `testing`  
+**Status**: ⬜ TODO
+
+**What to do:**
+- [ ] Test all API endpoints
+- [ ] Test frontend on different devices
+- [ ] Test with simulator running
+- [ ] Fix any bugs found
+- [ ] Update documentation
+
+**Testing Checklist:**
+- ✅ All sensors display correctly
+- ✅ Charts update with new data
+- ✅ Alerts are created when thresholds exceeded
+- ✅ Alerts can be resolved
+- ✅ Settings can be updated
+- ✅ Responsive on mobile/tablet/desktop
+- ✅ No console errors
+- ✅ Simulator sends data successfully
+
+---
+
+## 🔄 Workflow
+
+### For Each Task:
+
+1. **Pick a task** from the board (make sure dependencies are done)
+2. **Update status** to 🔄 IN PROGRESS
+3. **Create branch**: `git checkout -b branch-name`
+4. **Do the work** and test it
+5. **Commit**: `git commit -m "short message"`
+6. **Push**: `git push -u origin branch-name`
+7. **Update status** to ✅ DONE
+8. **Notify team** in group chat
+
+### Commit Message Examples:
+- `add sensor entity`
+- `create dashboard layout`
+- `fix alert color bug`
+- `update database schema`
+
+### Branch Naming:
+- Keep it short and descriptive
+- Use lowercase with hyphens
+- Examples: `db-schema`, `sensor-api`, `dashboard`
+
+---
+
+## 🆘 Need Help?
+
+### Common Issues:
+
+**MySQL won't connect:**
+- Check MySQL is running
+- Verify username/password in application.properties
+- Make sure database exists
+
+**CORS errors in frontend:**
+- Add `@CrossOrigin` annotation to controllers
+- Or configure CORS globally in Spring Boot
+
+**Charts not showing:**
+- Check Chart.js is loaded
+- Verify data format matches Chart.js requirements
+- Check browser console for errors
+
+**API returns 404:**
+- Verify endpoint URL is correct
+- Check controller mapping
+- Make sure Spring Boot is running
+
+---
+
+## 📚 Resources
+
+- **Spring Boot Docs**: https://spring.io/projects/spring-boot
+- **Chart.js Docs**: https://www.chartjs.org/docs/
+- **MySQL Tutorial**: https://www.mysqltutorial.org/
+- **Responsive Design**: https://web.dev/responsive-web-design-basics/
+- **Git Basics**: https://git-scm.com/book/en/v2/Getting-Started-Git-Basics
+
+---
+
+## ✅ Definition of Done
+
+A task is DONE when:
+- ✅ Code is written and works
+- ✅ Tested locally
+- ✅ Committed to Git
+- ✅ Pushed to GitHub
+- ✅ Status updated in this file
+- ✅ Team notified
+
+---
+
+**Last Updated**: May 11, 2026  
+**Project Status**: 🟢 Active Development
