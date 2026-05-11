@@ -45,7 +45,7 @@ Build a **Cold Room Monitoring System** that works on **localhost** with real-ti
 
 | ID | Task | Assigned To | Branch | Status |
 |----|------|-------------|--------|--------|
-| T001 | Project Setup | - | setup | ✅ DONE |
+| T001 | Project Setup | - | setup | ⬜ TODO |
 | T002 | Database Schema | - | db-schema | ⬜ TODO |
 | T003 | Spring Boot Setup | - | spring-init | ⬜ TODO |
 | T004 | Sensor API | - | sensor-api | ⬜ TODO |
@@ -54,7 +54,8 @@ Build a **Cold Room Monitoring System** that works on **localhost** with real-ti
 | T007 | Frontend Structure | - | frontend-base | ⬜ TODO |
 | T008 | Dashboard Page | - | dashboard | ⬜ TODO |
 | T009 | Alerts Page | - | alerts-page | ⬜ TODO |
-| T010 | Settings Page | - | settings-page | ⬜ TODO |
+| T010 | Settings Page | - | settings-page | ⬜ TODO
+ |
 | T011 | API Integration | - | api-connect | ⬜ TODO |
 | T012 | Simulator Script | - | simulator | ⬜ TODO |
 | T013 | Testing & Fixes | - | testing | ⬜ TODO |
@@ -71,10 +72,10 @@ Build a **Cold Room Monitoring System** that works on **localhost** with real-ti
 
 ### Phase 1: Foundation
 
-#### T001: Project Setup ✅
+#### T001: Project Setup
 **Assigned**: -  
 **Branch**: `setup`  
-**Status**: ✅ DONE
+**Status**: ⬜ TODO
 
 **What to do:**
 - [x] Create GitHub repository
