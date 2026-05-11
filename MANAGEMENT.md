@@ -340,8 +340,15 @@ frontend/
 │   ├── alerts.js       # Alerts page logic
 │   └── settings.js     # Settings page logic
 └── assets/
-    └── images/         # Icons, logos
+    ├── icons/          # SVG icons (temperature, humidity, door, etc.)
+    └── images/         # Logos, backgrounds
 ```
+
+**Recommended Icon Sources:**
+- **Font Awesome** (free): https://fontawesome.com/icons
+- **Heroicons** (free SVG): https://heroicons.com/
+- **Feather Icons** (free SVG): https://feathericons.com/
+- **Ionicons** (free): https://ionic.io/ionicons
 
 **Design Requirements:**
 - **Color Scheme**: Cool colors (blues, grays) to match "cold room" theme
@@ -351,6 +358,14 @@ frontend/
   - Desktop (769px+)
 - **Navigation**: Fixed top navbar with links to all pages
 - **Font**: Clean, modern font (e.g., Inter, Roboto)
+
+**⚠️ IMPORTANT FRONTEND RULES:**
+- ❌ **NO EMOJIS** - Use SVG icons or Font Awesome instead
+- ✅ **Use SVG icons** for all visual elements (sensors, alerts, buttons)
+- ✅ **Adaptive UI/UX** - Interface must adapt to user's device and screen size
+- ✅ **Professional look** - Clean, modern, business-ready design
+- ✅ **Icon libraries**: Font Awesome, Heroicons, or custom SVG
+- ✅ **Accessibility**: Proper contrast ratios, alt text for icons
 
 **CSS Variables to define:**
 ```css
@@ -388,12 +403,12 @@ frontend/
 
 ```
 ┌─────────────────────────────────────────┐
-│         🏠 Cold Room Monitor            │
+│    [ICON] Cold Room Monitor             │
 │  [Dashboard] [Alerts] [Settings]        │
 ├─────────────────────────────────────────┤
 │                                         │
 │  ┌──────┐ ┌──────┐ ┌──────┐ ┌──────┐  │
-│  │ 🌡️   │ │ 💧   │ │ 🚪   │ │ 📊   │  │
+│  │[TEMP]│ │[DROP]│ │[DOOR]│ │[GAUGE│  │
 │  │-18°C │ │ 52%  │ │Closed│ │1013  │  │
 │  │ OK   │ │ OK   │ │ OK   │ │ OK   │  │
 │  └──────┘ └──────┘ └──────┘ └──────┘  │
@@ -402,16 +417,23 @@ frontend/
 │  │  Temperature History            │   │
 │  │  [1h] [24h] [7d]               │   │
 │  │                                 │   │
-│  │  📈 Line Chart Here             │   │
+│  │  [Line Chart Here]              │   │
 │  │                                 │   │
 │  └─────────────────────────────────┘   │
 │                                         │
 │  ┌─────────────────────────────────┐   │
 │  │  Humidity History               │   │
-│  │  📈 Line Chart Here             │   │
+│  │  [Line Chart Here]              │   │
 │  └─────────────────────────────────┘   │
 └─────────────────────────────────────────┘
 ```
+
+**Icon Suggestions:**
+- Temperature: Thermometer SVG icon
+- Humidity: Water droplet SVG icon
+- Door: Door/lock SVG icon
+- Pressure: Gauge/meter SVG icon
+- Use Font Awesome or download free SVG icons from Heroicons
 
 **Sensor Card Features:**
 - Large value display
@@ -448,7 +470,7 @@ frontend/
 
 ```
 ┌─────────────────────────────────────────┐
-│  🚨 Alerts Management                   │
+│  [ALERT ICON] Alerts Management         │
 │  [Dashboard] [Alerts] [Settings]        │
 ├─────────────────────────────────────────┤
 │                                         │
@@ -457,7 +479,7 @@ frontend/
 │  [Critical] [Warning] [Info]            │
 │                                         │
 │  ┌─────────────────────────────────┐   │
-│  │ 🔴 CRITICAL                     │   │
+│  │ [!] CRITICAL                    │   │
 │  │ Temperature exceeded threshold  │   │
 │  │ Sensor: Temperature Sensor      │   │
 │  │ Value: -10.5°C (max: -15°C)    │   │
@@ -466,7 +488,7 @@ frontend/
 │  └─────────────────────────────────┘   │
 │                                         │
 │  ┌─────────────────────────────────┐   │
-│  │ 🟡 WARNING                      │   │
+│  │ [!] WARNING                     │   │
 │  │ Humidity slightly high          │   │
 │  │ Sensor: Humidity Sensor         │   │
 │  │ Value: 62% (max: 60%)          │   │
@@ -475,6 +497,12 @@ frontend/
 │  └─────────────────────────────────┘   │
 └─────────────────────────────────────────┘
 ```
+
+**Icon Suggestions:**
+- Critical: Red circle with exclamation mark SVG
+- Warning: Yellow/orange triangle with exclamation SVG
+- Info: Blue circle with "i" SVG
+- Resolved: Green checkmark SVG
 
 **Alert Card Features:**
 - Severity icon and color
@@ -486,10 +514,10 @@ frontend/
 - Smooth fade-out when resolved
 
 **Color Coding:**
-- 🔴 Critical: Red background/border
-- 🟡 Warning: Yellow/orange background/border
-- 🔵 Info: Blue background/border
-- ✅ Resolved: Gray/muted
+- Critical: Red background/border (#dc2626) with red icon
+- Warning: Yellow/orange background/border (#f59e0b) with orange icon
+- Info: Blue background/border (#2563eb) with blue icon
+- Resolved: Gray/muted (#6b7280) with checkmark icon
 
 ---
 
@@ -510,37 +538,42 @@ frontend/
 
 ```
 ┌─────────────────────────────────────────┐
-│  ⚙️ Settings                            │
+│  [GEAR ICON] Settings                   │
 │  [Dashboard] [Alerts] [Settings]        │
 ├─────────────────────────────────────────┤
 │                                         │
 │  Sensor Configuration                   │
 │                                         │
 │  ┌─────────────────────────────────┐   │
-│  │ 🌡️ Temperature Sensor           │   │
+│  │ [TEMP ICON] Temperature Sensor  │   │
 │  │ Location: Main Chamber          │   │
 │  │                                 │   │
 │  │ Min Threshold: [-25] °C         │   │
 │  │ Max Threshold: [-15] °C         │   │
 │  │                                 │   │
-│  │ Status: [●] Active              │   │
+│  │ Status: [Toggle] Active         │   │
 │  │                                 │   │
 │  │              [Save Changes]     │   │
 │  └─────────────────────────────────┘   │
 │                                         │
 │  ┌─────────────────────────────────┐   │
-│  │ 💧 Humidity Sensor              │   │
+│  │ [DROP ICON] Humidity Sensor     │   │
 │  │ Location: Main Chamber          │   │
 │  │                                 │   │
 │  │ Min Threshold: [40] %           │   │
 │  │ Max Threshold: [60] %           │   │
 │  │                                 │   │
-│  │ Status: [●] Active              │   │
+│  │ Status: [Toggle] Active         │   │
 │  │                                 │   │
 │  │              [Save Changes]     │   │
 │  └─────────────────────────────────┘   │
 └─────────────────────────────────────────┘
 ```
+
+**Icon Suggestions:**
+- Settings: Gear/cog SVG icon
+- Toggle switch: Custom CSS toggle or SVG switch
+- Save button: Floppy disk or checkmark SVG icon
 
 **Form Features:**
 - Input fields for min/max thresholds
@@ -698,6 +731,182 @@ async function resolveAlert(id)
 - **MySQL Tutorial**: https://www.mysqltutorial.org/
 - **Responsive Design**: https://web.dev/responsive-web-design-basics/
 - **Git Basics**: https://git-scm.com/book/en/v2/Getting-Started-Git-Basics
+
+### Frontend Resources
+- **Font Awesome Icons**: https://fontawesome.com/icons (free tier available)
+- **Heroicons (SVG)**: https://heroicons.com/ (completely free)
+- **Feather Icons**: https://feathericons.com/ (simple, clean SVG icons)
+- **CSS Flexbox Guide**: https://css-tricks.com/snippets/css/a-guide-to-flexbox/
+- **CSS Grid Guide**: https://css-tricks.com/snippets/css/complete-guide-grid/
+- **Responsive Design Patterns**: https://responsivedesign.is/patterns/
+
+---
+
+## 🎨 Frontend Design Guidelines
+
+### ⚠️ CRITICAL RULES - READ BEFORE CODING FRONTEND
+
+**1. NO EMOJIS - Use Professional Icons**
+```html
+<!-- ❌ WRONG - Don't use emojis -->
+<div>🌡️ Temperature</div>
+
+<!-- ✅ CORRECT - Use SVG or Font Awesome -->
+<div>
+  <svg class="icon"><!-- thermometer SVG --></svg>
+  Temperature
+</div>
+
+<!-- ✅ CORRECT - Font Awesome -->
+<div>
+  <i class="fa-solid fa-temperature-half"></i>
+  Temperature
+</div>
+```
+
+**2. Adaptive UI/UX Principles**
+- **Mobile First**: Design for mobile, then scale up
+- **Touch Targets**: Buttons minimum 44x44px for mobile
+- **Readable Text**: Minimum 16px font size on mobile
+- **Flexible Layouts**: Use Flexbox/Grid, avoid fixed widths
+- **Breakpoints**: 
+  - Mobile: 320px - 480px
+  - Tablet: 481px - 768px
+  - Desktop: 769px+
+
+**3. Accessibility (A11y)**
+```html
+<!-- Always add alt text for icons -->
+<img src="temp-icon.svg" alt="Temperature sensor icon">
+
+<!-- Use semantic HTML -->
+<button>Save</button>  <!-- Not <div onclick="..."> -->
+
+<!-- Proper contrast ratios -->
+/* Text on background must have 4.5:1 contrast ratio */
+```
+
+**4. Professional Look**
+- Clean, minimal design
+- Consistent spacing (use CSS variables)
+- Smooth transitions (0.2s - 0.3s)
+- Subtle shadows, not heavy effects
+- Professional color palette (no bright neon colors)
+
+**5. Icon Implementation Examples**
+
+**Option A: Font Awesome (CDN)**
+```html
+<!-- Add to <head> -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<!-- Use in HTML -->
+<i class="fa-solid fa-temperature-half"></i>
+<i class="fa-solid fa-droplet"></i>
+<i class="fa-solid fa-door-closed"></i>
+<i class="fa-solid fa-gauge"></i>
+<i class="fa-solid fa-triangle-exclamation"></i>
+```
+
+**Option B: Inline SVG (Best Performance)**
+```html
+<!-- Temperature Icon -->
+<svg class="icon" viewBox="0 0 24 24" fill="currentColor">
+  <path d="M12 2c1.1 0 2 .9 2 2v8.5c1.2.7 2 2 2 3.5 0 2.2-1.8 4-4 4s-4-1.8-4-4c0-1.5.8-2.8 2-3.5V4c0-1.1.9-2 2-2z"/>
+</svg>
+
+<style>
+.icon {
+  width: 24px;
+  height: 24px;
+  color: var(--primary-color);
+}
+</style>
+```
+
+**6. Responsive Card Example**
+```css
+.sensor-card {
+  display: flex;
+  flex-direction: column;
+  padding: 1.5rem;
+  background: var(--card-bg);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow);
+  transition: transform 0.2s;
+}
+
+.sensor-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+/* Mobile: Stack cards */
+@media (max-width: 480px) {
+  .sensor-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+}
+
+/* Tablet: 2 columns */
+@media (min-width: 481px) and (max-width: 768px) {
+  .sensor-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+}
+
+/* Desktop: 4 columns */
+@media (min-width: 769px) {
+  .sensor-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+  }
+}
+```
+
+**7. Loading States & Feedback**
+```html
+<!-- Show loading spinner while fetching data -->
+<div class="loading">
+  <svg class="spinner" viewBox="0 0 50 50">
+    <circle cx="25" cy="25" r="20"></circle>
+  </svg>
+  Loading sensors...
+</div>
+
+<!-- Success message -->
+<div class="alert alert-success">
+  <svg class="icon-check"><!-- checkmark SVG --></svg>
+  Settings saved successfully!
+</div>
+```
+
+**8. Button States**
+```css
+.btn {
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.btn:active {
+  transform: translateY(0);
+}
+
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+```
 
 ---
 
