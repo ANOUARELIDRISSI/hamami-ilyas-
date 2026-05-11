@@ -1,10 +1,12 @@
 # 📋 Cold Room Monitoring System - Project Management
 
 ## 👥 Team
-- **Developer 1**: Backend & Database
-- **Developer 2**: Backend & API
-- **Developer 3**: Frontend
-- **Developer 4**: Integration & Testing
+- **Hamami**
+- **Ilyas**
+- **Houssam**
+- **Aymane**
+
+> Pick tasks based on your availability. Any developer can work on any task!
 
 ---
 
@@ -43,19 +45,19 @@ Build a **Cold Room Monitoring System** that works on **localhost** with real-ti
 
 | ID | Task | Assigned To | Branch | Status |
 |----|------|-------------|--------|--------|
-| T001 | Project Setup | Dev1 | setup | ✅ DONE |
-| T002 | Database Schema | Dev1 | db-schema | ⬜ TODO |
-| T003 | Spring Boot Setup | Dev2 | spring-init | ⬜ TODO |
-| T004 | Sensor API | Dev2 | sensor-api | ⬜ TODO |
-| T005 | Readings API | Dev2 | readings-api | ⬜ TODO |
-| T006 | Alerts API | Dev2 | alerts-api | ⬜ TODO |
-| T007 | Frontend Structure | Dev3 | frontend-base | ⬜ TODO |
-| T008 | Dashboard Page | Dev3 | dashboard | ⬜ TODO |
-| T009 | Alerts Page | Dev3 | alerts-page | ⬜ TODO |
-| T010 | Settings Page | Dev3 | settings-page | ⬜ TODO |
-| T011 | API Integration | Dev4 | api-connect | ⬜ TODO |
-| T012 | Simulator Script | Dev4 | simulator | ⬜ TODO |
-| T013 | Testing & Fixes | All | testing | ⬜ TODO |
+| T001 | Project Setup | - | setup | ✅ DONE |
+| T002 | Database Schema | - | db-schema | ⬜ TODO |
+| T003 | Spring Boot Setup | - | spring-init | ⬜ TODO |
+| T004 | Sensor API | - | sensor-api | ⬜ TODO |
+| T005 | Readings API | - | readings-api | ⬜ TODO |
+| T006 | Alerts API | - | alerts-api | ⬜ TODO |
+| T007 | Frontend Structure | - | frontend-base | ⬜ TODO |
+| T008 | Dashboard Page | - | dashboard | ⬜ TODO |
+| T009 | Alerts Page | - | alerts-page | ⬜ TODO |
+| T010 | Settings Page | - | settings-page | ⬜ TODO |
+| T011 | API Integration | - | api-connect | ⬜ TODO |
+| T012 | Simulator Script | - | simulator | ⬜ TODO |
+| T013 | Testing & Fixes | - | testing | ⬜ TODO |
 
 **Status Legend:**
 - ⬜ TODO - Not started
@@ -70,7 +72,7 @@ Build a **Cold Room Monitoring System** that works on **localhost** with real-ti
 ### Phase 1: Foundation
 
 #### T001: Project Setup ✅
-**Assigned**: Dev1  
+**Assigned**: -  
 **Branch**: `setup`  
 **Status**: ✅ DONE
 
@@ -94,7 +96,7 @@ cold-room-monitoring/
 ---
 
 #### T002: Database Schema
-**Assigned**: Dev1  
+**Assigned**: -  
 **Branch**: `db-schema`  
 **Status**: ⬜ TODO
 
@@ -156,7 +158,7 @@ cold-room-monitoring/
 ---
 
 #### T003: Spring Boot Setup
-**Assigned**: Dev2  
+**Assigned**: -  
 **Branch**: `spring-init`  
 **Status**: ⬜ TODO
 
@@ -200,7 +202,7 @@ server.port=8080
 ### Phase 2: Backend API
 
 #### T004: Sensor API
-**Assigned**: Dev2  
+**Assigned**: -  
 **Branch**: `sensor-api`  
 **Status**: ⬜ TODO
 
@@ -238,7 +240,7 @@ server.port=8080
 ---
 
 #### T005: Readings API
-**Assigned**: Dev2  
+**Assigned**: -  
 **Branch**: `readings-api`  
 **Status**: ⬜ TODO
 
@@ -275,7 +277,7 @@ POST /api/readings
 ---
 
 #### T006: Alerts API
-**Assigned**: Dev2  
+**Assigned**: -  
 **Branch**: `alerts-api`  
 **Status**: ⬜ TODO
 
@@ -314,7 +316,7 @@ POST /api/readings
 ### Phase 3: Frontend
 
 #### T007: Frontend Structure
-**Assigned**: Dev3  
+**Assigned**: -  
 **Branch**: `frontend-base`  
 **Status**: ⬜ TODO
 
@@ -386,7 +388,7 @@ frontend/
 ---
 
 #### T008: Dashboard Page
-**Assigned**: Dev3  
+**Assigned**: -  
 **Branch**: `dashboard`  
 **Status**: ⬜ TODO
 
@@ -454,7 +456,7 @@ frontend/
 ---
 
 #### T009: Alerts Page
-**Assigned**: Dev3  
+**Assigned**: -  
 **Branch**: `alerts-page`  
 **Status**: ⬜ TODO
 
@@ -522,7 +524,7 @@ frontend/
 ---
 
 #### T010: Settings Page
-**Assigned**: Dev3  
+**Assigned**: -  
 **Branch**: `settings-page`  
 **Status**: ⬜ TODO
 
@@ -588,7 +590,7 @@ frontend/
 ### Phase 4: Integration
 
 #### T011: API Integration
-**Assigned**: Dev4  
+**Assigned**: -  
 **Branch**: `api-connect`  
 **Status**: ⬜ TODO
 
@@ -625,7 +627,7 @@ async function resolveAlert(id)
 ---
 
 #### T012: Simulator Script
-**Assigned**: Dev4  
+**Assigned**: -  
 **Branch**: `simulator`  
 **Status**: ⬜ TODO
 
@@ -650,7 +652,7 @@ async function resolveAlert(id)
 ---
 
 #### T013: Testing & Fixes
-**Assigned**: All  
+**Assigned**: -  
 **Branch**: `testing`  
 **Status**: ⬜ TODO
 
@@ -678,13 +680,23 @@ async function resolveAlert(id)
 ### For Each Task:
 
 1. **Pick a task** from the board (make sure dependencies are done)
-2. **Update status** to 🔄 IN PROGRESS
-3. **Create branch**: `git checkout -b branch-name`
-4. **Do the work** and test it
-5. **Commit**: `git commit -m "short message"`
-6. **Push**: `git push -u origin branch-name`
-7. **Update status** to ✅ DONE
-8. **Notify team** in group chat
+2. **Assign yourself**: Update "Assigned To" with your name in MANAGEMENT.md
+3. **Update status** to 🔄 IN PROGRESS
+4. **Create branch**: `git checkout -b branch-name`
+5. **Do the work** and test it
+6. **Commit**: `git commit -m "short message"`
+7. **Push**: `git push -u origin branch-name`
+8. **Update status** to ✅ DONE
+9. **Notify team** in group chat
+
+### Example:
+```markdown
+| T002 | Database Schema | Hamami | db-schema | 🔄 IN PROGRESS |
+```
+When done:
+```markdown
+| T002 | Database Schema | Hamami | db-schema | ✅ DONE |
+```
 
 ### Commit Message Examples:
 - `add sensor entity`
